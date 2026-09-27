@@ -134,7 +134,7 @@ function renderBoard() {
     if (currentLevel === 'hard') {
         cellSize = 22; // Уменьшаем для уровня "Эксперт"
     } else if (currentLevel === 'medium') {
-        cellSize = 28; // Чуть меньше для "Любителя"
+        cellSize = 22; // Чуть меньше для "Любителя"
     }
     
     // Устанавливаем сетку

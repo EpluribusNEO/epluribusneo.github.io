@@ -1,3 +1,4 @@
+ 
   const LEVELS = {
     easy:   { rows: 9,  cols: 9,  mines: 10 },
     medium: { rows: 16, cols: 16, mines: 40 },
@@ -51,6 +52,14 @@
   }
 
   function initGame() {
+
+    // Инициализация VK Bridge
+    if (window.vkBridge) {
+        vkBridge.send('VKWebAppInit')
+            .then(() => console.log('✅ VK Bridge успешно инициализирован'))
+            .catch((error) => console.error('❌ Ошибка инициализации VK Bridge:', error));
+    }
+
     const cfg = LEVELS[currentLevel];
     rows = cfg.rows;
     cols = cfg.cols;
@@ -250,16 +259,26 @@
     }
   }
 
-  function showModal(won) {
+function showModal(won) {
     if (won) {
-      modalTitle.textContent = '🎉 Победа!';
-      modalText.textContent = `Вы разминировали поле за ${timer} сек!`;
+        modalTitle.textContent = '🎉 Победа!';
+        modalText.textContent = `Вы разминировали поле за ${timer} сек!`;
+        
+        // Магия VK Bridge: предлагаем поделиться победой
+        if (window.vkBridge) {
+            vkBridge.send('VKWebAppShowWallPostBox', {
+                message: `Я разминировал поле в Сапёре за ${timer} сек! Попробуй побить мой рекорд! 💣🚩 #Сапёр #VKMiniApps`
+            }).catch(() => {
+                // Если пользователь отменил публикацию или мы тестируем не в ВК, просто игнорируем ошибку
+                console.log('Публикация отменена или недоступна вне ВК');
+            });
+        }
     } else {
-      modalTitle.textContent = '💥 Поражение!';
-      modalText.textContent = 'Вы наступили на мину...';
+        modalTitle.textContent = '💥 Поражение!';
+        modalText.textContent = 'Вы наступили на мину...';
     }
     modal.classList.add('show');
-  }
+}
 
   modalBtn.addEventListener('click', () => {
     modal.classList.remove('show');

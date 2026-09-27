@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/mystyle.css">
+    
+    <title>САПЁР</title>
+</head>
+<body>
+    <h1>💣 САПЁР</h1>
+
+  <div class="controls">
+    <button class="difficulty-btn active" data-level="easy">Новичок (9×9)</button>
+    <button class="difficulty-btn" data-level="medium">Любитель (16×16)</button>
+    <button class="difficulty-btn" data-level="hard">Эксперт (30×16)</button>
+  </div>
+
+  <div class="game-panel">
+    <div class="counter" id="mineCounter">010</div>
+    <button class="reset-btn" id="resetBtn" title="Новая игра">😊</button>
+    <div class="counter" id="timer">000</div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <p class="hint">ЛКМ — открыть клетку · ПКМ — поставить флажок 🚩</p>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <h2 id="modalTitle">🎉 Победа!</h2>
+      <p id="modalText">Вы нашли все мины!</p>
+      <button class="modal-btn" id="modalBtn">Играть снова</button>
+    </div>
+  </div>
+
+<script src="scripts/script.js"></script>
+
+</body>
+</html>

@@ -27,7 +27,7 @@ Classic Minesweeper game in neon style.
 
 ---
 
-## 🇧 English
+## 🇺🇸/🇬🇧 English
 
 ### Description
 Classic Minesweeper with three difficulty levels and neon design.
@@ -48,9 +48,9 @@ Nostalgia for Windows XP meets cyberpunk aesthetics.
 ### 🤖 AI-Assisted Development
 #### 🇷🇺 Русский
 Проект создан с помощью AI (Qwen). 
-Архитектура, дизайн и реализация — **Denis Pirogov** aka **EPluribusNEO**.
+Архитектура, дизайн, код и реализация — **Denis Pirogov** aka **EPluribusNEO**.
 
-#### 🇧 English
+#### 🇺🇸/🇬🇧 English
 This project was developed with the assistance of AI (Qwen).
 The code architecture, design decisions, and final implementation were made by **Denis Pirogov** aka **EPluribusNEO**.
 

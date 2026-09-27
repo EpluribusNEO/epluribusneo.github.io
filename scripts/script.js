@@ -125,32 +125,51 @@
     }
   }
 
-  function renderBoard() {
+function renderBoard() {
     boardEl.innerHTML = '';
-    boardEl.style.gridTemplateColumns = `repeat(${cols}, 32px)`;
-    if (window.innerWidth <= 600) {
-      boardEl.style.gridTemplateColumns = `repeat(${cols}, 26px)`;
+    
+    // Адаптивный размер ячеек в зависимости от уровня сложности
+    let cellSize = 32; // Базовый размер
+    
+    if (currentLevel === 'hard') {
+        cellSize = 22; // Уменьшаем для уровня "Эксперт"
+    } else if (currentLevel === 'medium') {
+        cellSize = 28; // Чуть меньше для "Любителя"
     }
+    
+    // Устанавливаем сетку
+    boardEl.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+    
+    // Обновляем CSS для ячеек
+    const style = document.createElement('style');
+    style.textContent = `
+        .cell {
+            width: ${cellSize}px !important;
+            height: ${cellSize}px !important;
+            font-size: ${cellSize * 0.55}px !important;
+        }
+    `;
+    document.head.appendChild(style);
 
     for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const cell = board[r][c];
-        const el = document.createElement('div');
-        el.className = 'cell';
-        el.dataset.r = r;
-        el.dataset.c = c;
+        for (let c = 0; c < cols; c++) {
+            const cell = board[r][c];
+            const el = document.createElement('div');
+            el.className = 'cell';
+            el.dataset.r = r;
+            el.dataset.c = c;
 
-        el.addEventListener('click', () => handleClick(r, c));
-        el.addEventListener('contextmenu', (e) => {
-          e.preventDefault();
-          handleRightClick(r, c);
-        });
+            el.addEventListener('click', () => handleClick(r, c));
+            el.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                handleRightClick(r, c);
+            });
 
-        boardEl.appendChild(el);
-        cell.el = el;
-      }
+            boardEl.appendChild(el);
+            cell.el = el;
+        }
     }
-  }
+}
 
   function revealCell(r, c) {
     const cell = board[r][c];

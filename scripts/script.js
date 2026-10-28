@@ -320,3 +320,7 @@ function showModal(won) {
   });
 
  initGame(); 
+
+ document.getElementById('goto-github').addEventListener('click', () => {
+    window.open('https://github.com/epluribusneo', '_blank');
+});

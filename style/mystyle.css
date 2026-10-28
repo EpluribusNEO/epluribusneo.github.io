@@ -232,6 +232,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s;
+    margin-top: 10px;
   }
 
   .modal-btn:hover { transform: scale(1.05); }
